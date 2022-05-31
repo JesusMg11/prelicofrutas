@@ -1,1 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
+.card {
+    box-shadow: 1px 9px 10px 1px rgba(0, 0, 0, 0.9);
+    transition: 0.3s;
+    width: 330px;
+    margin: 0 auto;
+    background-color: hsl(0, 0%, 100%);
+  }
+  
+  .card:hover {
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.9);
+  }
+  .card:active{
+    transform: scale(.9);
+  }
+  

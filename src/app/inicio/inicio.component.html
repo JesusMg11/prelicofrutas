@@ -1,0 +1,84 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10" style="text-align: center;">
+          <h3>Frutitas!</h3>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4">
+          <select (change)="filtro($event.target.value)">
+            <option *ngFor="let valores of filtros" [value]="valores.id">
+                {{valores.filtro}}
+            </option>
+        </select>
+        </div>
+        <div class="col-md-4">
+        <select *ngIf=" banderaFamilia == true" id="selectFamilia">
+            <option *ngFor="let item of arregloFamilias" [value]="item">
+                {{item}}
+            </option>
+        </select>
+        <button type="button" class="btn btn-primary btn-sm" *ngIf="banderaFamilia == true" (click)="obtenerFamilias()"> Buscar </button>
+
+        <select *ngIf=" banderaGenus == true" id="selectGenus">
+          <option *ngFor="let item of arregloGenus" [value]="item">
+              {{item}}
+          </option>
+        </select>
+        <button type="button" class="btn btn-primary btn-sm" *ngIf="banderaGenus == true" (click)="obtenerGenus()"> Buscar </button>
+
+      <select *ngIf=" banderaOrder == true" id="selectOrder">
+        <option *ngFor="let item of arregloOrder" [value]="item">
+            {{item}}
+        </option>
+      </select>
+      <button type="button" class="btn btn-primary btn-sm" *ngIf="banderaOrder == true" (click)="obtenerOrder()"> Buscar </button>
+
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-md-4" *ngFor="let item of frutas">
+            <div class="card" style="text-align: center; cursor: pointer" data-mdb-toggle="modal" data-mdb-target="#modalFruta" (click)="verInformacion(item)">
+              <p>Nombre: {{item.name}}</p>
+              <p>Familia: {{item.family}}</p>
+              <p>Genus: {{item.genus}}</p>
+              <p>Order: {{item.order}}</p>
+            </div>
+            <br>
+        </div>
+      </div>
+</div>
+
+<!-- Modal Información -->
+<div class="modal fade" id="modalFruta" tabindex="-1" aria-labelledby="labelModalFruta" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="labelModalFruta">Información Fruta</h5>
+        <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row" style="text-align: center;">
+          <h6>¿Fruta?</h6>
+          <p>Nombre: {{fruta.name}}</p>
+          <p>Familia: {{fruta.family}}</p>
+          <p>Genus: {{fruta.genus}}</p>
+          <p>ID: {{fruta.id}}</p>
+          <p>Inf. Nutricional: [Calorias: {{fruta.nutritions.calories}}, Carbohidratos: {{fruta.nutritions.carbohydrates}}, 
+            Grasas: {{fruta.nutritions.fat}}, Proteinas: {{fruta.nutritions.protein}}, Azucares: {{fruta.nutritions.sugar}}]</p>
+          <p>Order: {{fruta.order}}</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-mdb-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Fin modal Información-->
